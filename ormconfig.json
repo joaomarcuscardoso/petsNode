@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": "5432",
+  "username": "joaomarcus",
+  "password": "",
+  "database": "petsnode",
+  "migrations": ["src/shared/infra/database/migrations/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
+  "cli": {
+    "migrationsDir": "src/shared/infra/database/migrations",
+    "entities": ["./src/modules/**/entities/*.ts"]
+  }
+}
