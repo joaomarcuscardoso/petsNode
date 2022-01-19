@@ -2,11 +2,16 @@
   "compilerOptions": {
       "target": "es2017",                                  
       "module": "commonjs", 
-      "moduleResolution": "Node",                            
-      "baseUrl": "./src/",
-      "typeRoots": [
-        "./src/@types"
-      ],                       
+      "rootDir": "./",
+      "baseUrl": "./src",
+      "outDir": "./dist",
+      "paths": {
+          "@modules/*": ["modules/*"],
+          "@shared/*": ["shared/*"],
+          "@errors/*": ["errors/*"],
+
+      },
+      
       "esModuleInterop": true,                            
       "strict": false,                                     
       "strictPropertyInitialization": false,     

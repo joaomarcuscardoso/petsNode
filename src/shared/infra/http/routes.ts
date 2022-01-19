@@ -1,17 +1,19 @@
 import { Router } from "express";
 
-import { CreatePetController } from "modules/pets/useCases/createPet/CreatePetController";
 
 import { AuthenticateUserController } from "modules/accounts/useCases/authenticateUser/AuthenticateUserController";
-import { ProfileUserController } from "modules/accounts/useCases/profileUser/ProfileUserController";
-import { RegisterUserController } from "modules/accounts/useCases/registerUser/RegisterUserController";
+import { ProfileUserController } from "@modules/accounts/useCases/profileUser/ProfileUserController";
+import { RegisterUserController } from "@modules/accounts/useCases/registerUser/RegisterUserController";
 
-import { CreateSpecieController } from "modules/species/useCases/createSpecie/CreateSpecieController";
-import { ListAllSpeciesController } from "modules/species/useCases/listAllSpecies/ListAllSpeciesController";
-import { UpdateSpecieController } from "modules/species/useCases/updateSpecie/UpdateSpecieController";
+import { CreateSpecieController } from "@modules/species/useCases/createSpecie/CreateSpecieController";
+import { ListAllSpeciesController } from "@modules/species/useCases/listAllSpecies/ListAllSpeciesController";
+import { UpdateSpecieController } from "@modules/species/useCases/updateSpecie/UpdateSpecieController";
 
 import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 import { DeleteSpecieController } from "modules/species/useCases/deleteSpecie/DeleteSpecieController";
+import { CreatePetController } from "@modules/pets/useCases/createPet/CreatePetController";
+
+
 
 const router = Router();
 
@@ -32,7 +34,7 @@ router.post("/login", authenticateUserController.handle);
 router.post("/register", registerUserController.handle);
 
 // Pet
-router.post("/pet", ensureAuthenticated, createPetController.handle);
+router.post("/pets", ensureAuthenticated, createPetController.handle);
 
 // Specie
 router.post("/species", ensureAuthenticated, createSpecieController.handle);

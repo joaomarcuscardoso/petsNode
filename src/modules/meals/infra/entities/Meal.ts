@@ -1,5 +1,6 @@
-import { Pet } from "modules/pets/infra/entities/Pet";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { v4 as uuid } from "uuid";
+import { Pet } from "../../../pets/infra/entities/Pet";
 
 @Entity("meals")
 class Meal {
@@ -25,8 +26,11 @@ class Meal {
   @UpdateDateColumn()
   updated_at: Date;
 
-
-
+  constructor() {
+    if(!this.id) {
+      this.id = uuid();
+    }
+  }
 
 }
 
