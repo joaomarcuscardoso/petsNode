@@ -1,5 +1,5 @@
 import { instanceToPlain } from 'class-transformer';
-import { UsersRepositories } from "../../infra/repositories/UsersRepositories";
+import { UsersRepositories } from "modules/accounts/infra/repositories/UsersRepositories";
 import { getCustomRepository } from 'typeorm';
 
 

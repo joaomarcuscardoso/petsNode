@@ -1,5 +1,5 @@
 import { Specie } from 'modules/species/infra/entities/Specie';
-import { SpeciesRepositories } from "../../infra/repositories/SpeciesRepositories";
+import { SpeciesRepositories } from "modules/species/infra/repositories/SpeciesRepositories";
 import { getCustomRepository } from 'typeorm';
 
 class ListAllSpeciesUseCase {

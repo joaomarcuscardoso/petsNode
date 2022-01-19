@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import { IAuthenticateRequest } from "../../dtos/IAuthenticateRequest";
-import { UsersRepositories } from "../../infra/repositories/UsersRepositories"
+import { IAuthenticateRequest } from "modules/accounts/dtos/IAuthenticateRequest";
+import { UsersRepositories } from "modules/accounts/infra/repositories/UsersRepositories"
 import { getCustomRepository } from "typeorm";
 
  

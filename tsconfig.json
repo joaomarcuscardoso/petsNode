@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
       "target": "es2017",                                  
-      "module": "commonjs",                             "rootDir": "./",
-      "baseUrl": "./src",
+      "module": "commonjs", 
+      "moduleResolution": "Node",                            
+      "baseUrl": "./src/",
       "typeRoots": [
         "./src/@types"
       ],                       

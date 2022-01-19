@@ -19,6 +19,10 @@ export class CreateMeals1642557011345 implements MigrationInterface {
                     {
                         name: "meal_time",
                         type: "timestamp"
+                    },
+                    {
+                        name: "restrictions",
+                        type: "varchar"
                     }
                 ]
             })

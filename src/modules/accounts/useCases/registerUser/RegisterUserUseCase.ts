@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
-import { IUserRequest } from "../../dtos/IUserRequest";
-import { UsersRepositories } from "../../infra/repositories/UsersRepositories";
+import { IUserRequest } from "modules/accounts/dtos/IUserRequest";
+import { UsersRepositories } from "modules/accounts/infra/repositories/UsersRepositories";
 import { getCustomRepository } from "typeorm";
 
 
