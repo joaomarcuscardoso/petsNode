@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Pet } from "../../../pets/infra/entities/Pet";
 
@@ -17,8 +17,8 @@ class Meal {
   pet_id: string;
 
   @JoinColumn({name: "pet_id"})
-  @OneToMany(() => Pet, pet => pet.id)
-  petId: Pet;
+  @ManyToOne(() => Pet, pet => pet.id)
+  petId: Pet
 
   @CreateDateColumn()
   created_at: Date;

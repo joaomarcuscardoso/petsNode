@@ -4,5 +4,6 @@ interface IPetRequest {
   species_id: string;
   meals_id?: string;
   number_meals: number;
+  user_id: string;
 }
 export { IPetRequest };

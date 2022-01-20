@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreatePets1642557490977 implements MigrationInterface {
+export class CreatePets1642633653319 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -17,19 +17,19 @@ export class CreatePets1642557490977 implements MigrationInterface {
                         type: "varchar"
                     },
                     {
-                        name: "species_id",
+                        name: "user_id",
                         type: "uuid",
-
                     },
                     {
-                        name: "meals_id",
+                        name: "species_id",
                         type: "uuid",
-                        isNullable: true
+    
                     },
                     {
                         name: "number_meals",
                         type: "integer"
                     },
+
                     {
                         name: "restrictions",
                         type: "varchar",
@@ -45,7 +45,7 @@ export class CreatePets1642557490977 implements MigrationInterface {
                         isNullable: true
                     }
                 ],
-
+    
                 foreignKeys: [
                     {
                         name: "FKSpecies",
@@ -56,20 +56,22 @@ export class CreatePets1642557490977 implements MigrationInterface {
                         onUpdate: "SET NULL",
                     },
                     {
-                        name: "FKMeals",
-                        referencedTableName: "meals",
+                        name: "FKUsers",
+                        referencedTableName: "users",
                         referencedColumnNames: ["id"],
-                        columnNames: ["meals_id"],
+                        columnNames: ["user_id"],
                         onDelete: "SET NULL",
                         onUpdate: "SET NULL",
                     }
                 ]
-
+    
             })
+        
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("pets");
     }
+
 }

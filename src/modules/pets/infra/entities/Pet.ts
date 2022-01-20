@@ -1,3 +1,4 @@
+import { User } from "@modules/accounts/infra/entities/User";
 import { Meal } from "@modules/meals/infra/entities/Meal";
 import { Specie } from "@modules/species/infra/entities/Specie";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
@@ -19,7 +20,7 @@ class Pet {
   restrictions: string
 
   @JoinColumn({name: "species_id"})
-  @OneToOne(() => Specie)
+  @OneToOne(() => Specie, specie => specie.id)
   speciesId: Specie;
 
   meals_id: string;
@@ -30,6 +31,14 @@ class Pet {
 
   @Column()
   number_meals: number;
+
+  @Column()
+  user_id: string;
+
+  @JoinColumn({name: "user_id"})
+  @OneToOne(() => User, user => user.id)
+  UserId: User;
+
 
   @CreateDateColumn()
   created_at: Date;

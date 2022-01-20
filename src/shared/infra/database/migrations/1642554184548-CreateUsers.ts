@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class CreateUsers1642554184548 implements MigrationInterface {
 
@@ -40,9 +40,11 @@ export class CreateUsers1642554184548 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     }
-                ]
+                ],
+
             })
         );
+
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
