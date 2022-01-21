@@ -12,7 +12,7 @@ class UpdateSpecieUseCase {
       throw new AppError("All fields is required.");
     }
 
-    const specieUpdated = await specieRepositories.createQueryBuilder()
+    await specieRepositories.createQueryBuilder()
     .update({name, description})
     .where({id, user_id})
     .execute();

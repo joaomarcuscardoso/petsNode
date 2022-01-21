@@ -12,7 +12,7 @@ class CreateMealUseCase {
     const pet = await petRepositories.findOne({id: pet_id});
 
     if(!pet) {
-      throw new AppError("Pet not found");
+      throw new AppError("Pet not found", 404);
     }
 
     if(!description && !meal_time) {

@@ -20,7 +20,7 @@ class UpdateMealUseCase {
     if(pet) {
 
       if(pet.user_id != user_id) {
-        throw new AppError("Unauthorized");
+        throw new AppError("Unauthorized", 401);
       }
 
       await mealsRepositories

@@ -1,5 +1,6 @@
 import { IUpdateUser } from '@modules/accounts/dtos/IUpdateUser';
 import { User } from '@modules/accounts/infra/entities/User';
+import { AppError } from '@shared/errors/AppError';
 import { UsersRepositories } from 'modules/accounts/infra/repositories/UsersRepositories';
 import { getCustomRepository } from 'typeorm';
 

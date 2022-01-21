@@ -10,7 +10,7 @@ class DeletePetUseCase {
     const pet = await petsRepositories.findOne({id, user_id});
 
     if(!pet) {
-      throw new AppError("Unauthorized");
+      throw new AppError("Unauthorized", 401);
     }
 
     const meal = await mealsRepositories.find({pet_id: id});
