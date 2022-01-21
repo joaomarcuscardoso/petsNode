@@ -10,8 +10,7 @@ class CreatePetUseCase {
     const petRepositories = getCustomRepository(PetsRepositories);
     const speciesRepositories = getCustomRepository(SpeciesRepositories);
     
-    const specieExist = await speciesRepositories.findOne({id: species_id});
-
+    const specieExist = await speciesRepositories.findOne({id: species_id, user_id});
 
     if( !specieExist) {
       throw new Error("Specie not found!");
