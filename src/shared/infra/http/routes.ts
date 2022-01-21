@@ -18,6 +18,8 @@ import { ListAllPetController } from "@modules/pets/useCases/listPet/ListAllPetC
 import { ListAllMealController } from "@modules/meals/UseCases/listAllMeal/ListAllMealController";
 import { UpdateMealController } from "@modules/meals/UseCases/updateMeal/UpdateMealController";
 import { DeleteMealController } from "@modules/meals/UseCases/deleteMeal/DeleteMealController";
+import { DeletePetController } from "@modules/pets/useCases/deletePet/DeletePetController";
+import { UpdatePetController } from "@modules/pets/useCases/updatePet/UpdatePetController";
 
 
 
@@ -29,6 +31,8 @@ const authenticateUserController = new AuthenticateUserController();
 
 const createPetController = new CreatePetController();
 const listAllPetController = new ListAllPetController();
+const deletePetController = new DeletePetController();
+const updatePetController = new UpdatePetController();
 
 const createSpecieController = new CreateSpecieController();
 const listAllSpeciesController = new ListAllSpeciesController();
@@ -49,6 +53,8 @@ router.post("/register", registerUserController.handle);
 // Pet
 router.post("/pets", ensureAuthenticated, createPetController.handle);
 router.get("/pets", ensureAuthenticated, listAllPetController.handle);
+router.delete("/pets", ensureAuthenticated, deletePetController.handle);
+router.put("/pets", ensureAuthenticated, updatePetController.handle);
 
 // Specie
 router.post("/species", ensureAuthenticated, createSpecieController.handle);
