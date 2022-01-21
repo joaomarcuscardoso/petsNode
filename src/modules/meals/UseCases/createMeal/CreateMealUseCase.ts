@@ -2,6 +2,7 @@ import { IMealRequest } from "modules/meals/dtos/IMealRequest";
 import { getCustomRepository } from 'typeorm';
 import { MealsRepositories } from "modules/meals/infra/repositories/MealsRepositories";
 import { PetsRepositories } from "modules/pets/infra/repositories/PetsRepositories";
+import { AppError } from "@shared/errors/AppError";
 
 class CreateMealUseCase {
   async execute({description, meal_time, pet_id}: IMealRequest) {
@@ -11,11 +12,11 @@ class CreateMealUseCase {
     const pet = await petRepositories.findOne({id: pet_id});
 
     if(!pet) {
-      throw new Error("Pet not found");
+      throw new AppError("Pet not found");
     }
 
     if(!description && !meal_time) {
-      throw new Error("All inputs is required!");
+      throw new AppError("All inputs is required!");
     }
 
     const meal = mealRepositories.create({

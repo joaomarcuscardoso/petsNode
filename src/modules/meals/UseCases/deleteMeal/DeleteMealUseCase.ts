@@ -2,6 +2,7 @@ import { MealsRepositories } from 'modules/meals/infra/repositories/MealsReposit
 import { PetsRepositories } from 'modules/pets/infra/repositories/PetsRepositories';
 import { getCustomRepository } from 'typeorm';
 import { UsersRepositories } from 'modules/accounts/infra/repositories/UsersRepositories';
+import { AppError } from '@shared/errors/AppError';
 
 class DeleteMealUseCase {
   async execute({ id, user_id }): Promise<string> {
@@ -16,7 +17,7 @@ class DeleteMealUseCase {
 
       if(pet) {
         if(pet.user_id != user_id) {
-          throw new Error("Unauthorized");
+          throw new AppError("Unauthorized");
         }
         
         await mealsRepositories.remove(meal);

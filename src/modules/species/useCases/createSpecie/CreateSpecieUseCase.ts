@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 import { ISpecieRequest } from "../../dtos/ISpecieRequest";
 import { SpeciesRepositories } from "../../infra/repositories/SpeciesRepositories";
 import { Specie } from "../../infra/entities/Specie";
+import { AppError } from '@shared/errors/AppError';
 
 class CreateSpecieUseCase {
   async execute({name, description, user_id}): Promise<Specie> {
@@ -13,16 +14,16 @@ class CreateSpecieUseCase {
     });
 
     if(specieAlreadyExists){
-      throw new Error("Species Already exists!");
+      throw new AppError("Species Already exists!");
     }
 
 
     if(!name) {
-      throw new Error("Name is required!")
+      throw new AppError("Name is required!")
     }
     
     if(!description) {
-      throw new Error("Description is required!")
+      throw new AppError("Description is required!")
     }
 
     const specie = specieRepositories.create({

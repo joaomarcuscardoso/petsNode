@@ -1,13 +1,14 @@
 import { getCustomRepository } from 'typeorm';
 import { PetsRepositories } from 'modules/pets/infra/repositories/PetsRepositories';
 import { Pet } from 'modules/pets/infra/entities/Pet';
+import { AppError } from '@shared/errors/AppError';
 
 class UpdatePetUseCase {
   async execute({ id, name, number_meals, restrictions, species_id, user_id }): Promise<string> {
     const petsRepositories = getCustomRepository(PetsRepositories);
 
     if( !id ||!name || !number_meals || !restrictions || !species_id) {
-      throw new Error("All fill is required!");
+      throw new AppError("All fill is required!");
     }
 
     await petsRepositories.createQueryBuilder()

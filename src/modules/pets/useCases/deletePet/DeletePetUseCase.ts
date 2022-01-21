@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import { PetsRepositories } from 'modules/pets/infra/repositories/PetsRepositories';
 import { MealsRepositories } from 'modules/meals/infra/repositories/MealsRepositories';
+import { AppError } from '@shared/errors/AppError';
 
 class DeletePetUseCase {
   async execute({ id, user_id }) {
@@ -9,7 +10,7 @@ class DeletePetUseCase {
     const pet = await petsRepositories.findOne({id, user_id});
 
     if(!pet) {
-      throw new Error("Unauthorized");
+      throw new AppError("Unauthorized");
     }
 
     const meal = await mealsRepositories.find({pet_id: id});

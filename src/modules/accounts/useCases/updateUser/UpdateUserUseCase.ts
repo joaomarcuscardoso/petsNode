@@ -9,7 +9,7 @@ class UpdateUserUseCase {
     const usersRepositories = getCustomRepository(UsersRepositories);
 
     if(!name) {
-      throw new Error("Name is required!");
+      throw new AppError("Name is required!");
     }
 
     const user = await usersRepositories.createQueryBuilder()

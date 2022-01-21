@@ -1,3 +1,4 @@
+import { AppError } from "@shared/errors/AppError";
 import { hash } from "bcryptjs";
 import { IUserRequest } from "modules/accounts/dtos/IUserRequest";
 import { UsersRepositories } from "modules/accounts/infra/repositories/UsersRepositories";
@@ -11,7 +12,7 @@ class RegisterUserUseCase {
     const usersRepository = getCustomRepository(UsersRepositories);
 
     if(!email) {
-      throw new Error("E-mail is required");
+      throw new AppError("E-mail is required");
     }
 
     const usersAlreadyExists = await usersRepository.findOne({
@@ -19,7 +20,7 @@ class RegisterUserUseCase {
     });
 
     if(usersAlreadyExists) {
-      throw new Error("User already exists");
+      throw new AppError("User already exists");
     }
 
     const passwordHash = await hash(password, 8);

@@ -1,3 +1,4 @@
+import { AppError } from "@shared/errors/AppError";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { IAuthenticateRequest } from "modules/accounts/dtos/IAuthenticateRequest";
@@ -14,14 +15,14 @@ class AuthenticateUserUseCase {
 
 
     if(!user) {
-      throw new Error("Email/Password incorrect");
+      throw new AppError("Email/Password incorrect");
     }
   
     const passwordMatch = await compare(password, user.password);
   
     if(!passwordMatch) {
-      // Criar Error Customizável
-      throw new Error("Email/Password incorrect");
+      // Criar AppError Customizável
+      throw new AppError("Email/Password incorrect");
     }
 
     const token = sign(
