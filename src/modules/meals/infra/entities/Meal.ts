@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Pet } from "../../../pets/infra/entities/Pet";
 
@@ -16,8 +16,17 @@ class Meal {
   @Column()
   pet_id: string;
 
-  @JoinColumn({name: "pet_id"})
-  @ManyToOne(() => Pet, pet => pet.id)
+  @JoinTable({
+    name: "pet_id",
+    joinColumn: {
+      name: "petId"
+    },
+    inverseJoinColumn: {
+      name: "petId"
+    }
+  })
+
+  @ManyToMany(() => Pet, pet => pet.id)
   petId: Pet
 
   @CreateDateColumn()

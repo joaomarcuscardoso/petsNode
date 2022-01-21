@@ -1,5 +1,5 @@
 import { User } from "../../../../modules/accounts/infra/entities/User";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid} from "uuid";
 
 @Entity("species")
@@ -17,7 +17,7 @@ class Specie {
   user_id: string
 
   @JoinColumn({ name: "user_id"})
-  @OneToOne(() => User)
+  @ManyToOne(() => User)
   userId: User;
 
   @CreateDateColumn()

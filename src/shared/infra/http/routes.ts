@@ -15,6 +15,9 @@ import { CreatePetController } from "@modules/pets/useCases/createPet/CreatePetC
 
 import { CreateMealController } from "@modules/meals/UseCases/createMeal/CreateMealController";
 import { ListAllPetController } from "@modules/pets/useCases/listPet/ListAllPetController";
+import { ListAllMealController } from "@modules/meals/UseCases/listAllMeal/ListAllMealController";
+import { UpdateMealController } from "@modules/meals/UseCases/updateMeal/UpdateMealController";
+import { DeleteMealController } from "@modules/meals/UseCases/deleteMeal/DeleteMealController";
 
 
 
@@ -34,6 +37,9 @@ const deleteSpecieController = new DeleteSpecieController();
 
 
 const createMealController = new CreateMealController();
+const listAllMealController = new ListAllMealController();
+const updateMealController = new UpdateMealController();
+const deleteMealController = new DeleteMealController();
 
 // User
 router.get("/profile", ensureAuthenticated, profileUserController.handle);
@@ -50,6 +56,10 @@ router.get("/species", ensureAuthenticated, listAllSpeciesController.handle);
 router.put("/species", ensureAuthenticated, updateSpecieController.handle);
 router.delete("/species", ensureAuthenticated, deleteSpecieController.handle);
 
+// Meals
 router.post("/meals", ensureAuthenticated, createMealController.handle);
+router.get("/meals", ensureAuthenticated, listAllMealController.handle);
+router.put("/meals", ensureAuthenticated, updateMealController.handle);
+router.delete("/meals", ensureAuthenticated, deleteMealController.handle)
 
 export { router };

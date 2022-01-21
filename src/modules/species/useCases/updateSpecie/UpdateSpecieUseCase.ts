@@ -24,6 +24,7 @@ class UpdateSpecieUseCase {
     if(name) {
       specie.name = name;
     }
+    
     if(description) {
 
       specie.description = description;
