@@ -3,7 +3,8 @@ import { UpdatePetUseCase } from "./UpdatePetUseCase";
 
 class UpdatePetController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, name, number_meals, restrictions, species_id } = request.body;
+    const { name, number_meals, restrictions, species_id } = request.body;
+    const { id } = request.params;
     const { user_id } = request;
 
     const updatePetUseCase = new UpdatePetUseCase();

@@ -23,7 +23,6 @@ export class CreatePets1642633653319 implements MigrationInterface {
                     {
                         name: "species_id",
                         type: "uuid",
-    
                     },
                     {
                         name: "number_meals",

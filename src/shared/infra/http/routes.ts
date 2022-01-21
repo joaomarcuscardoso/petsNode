@@ -21,6 +21,7 @@ import { DeleteMealController } from "@modules/meals/UseCases/deleteMeal/DeleteM
 import { DeletePetController } from "@modules/pets/useCases/deletePet/DeletePetController";
 import { UpdatePetController } from "@modules/pets/useCases/updatePet/UpdatePetController";
 import { DeleteUserController } from "@modules/accounts/useCases/deleteUser/DeleteUserController";
+import { UpdateUserController } from "@modules/accounts/useCases/updateUser/UpdateUserController";
 
 
 
@@ -30,6 +31,7 @@ const profileUserController = new ProfileUserController();
 const registerUserController = new RegisterUserController();
 const authenticateUserController = new AuthenticateUserController();
 const deleteUserController = new DeleteUserController();
+const updateUserController = new UpdateUserController();
 
 const createPetController = new CreatePetController();
 const listAllPetController = new ListAllPetController();
@@ -47,27 +49,28 @@ const updateMealController = new UpdateMealController();
 const deleteMealController = new DeleteMealController();
 
 // User
-router.get("/profile", ensureAuthenticated, profileUserController.handle);
-router.delete("/user", ensureAuthenticated, deleteUserController.handle);
-router.post("/login", authenticateUserController.handle);
-router.post("/register", registerUserController.handle);
+router.get("/user/profile", ensureAuthenticated, profileUserController.handle);
+router.delete("/user/del", ensureAuthenticated, deleteUserController.handle);
+router.post("/user/login", authenticateUserController.handle);
+router.post("/user/register", registerUserController.handle);
+router.put("/user/profile/save", ensureAuthenticated, updateUserController.handle);
 
 // Pet
 router.post("/pets", ensureAuthenticated, createPetController.handle);
 router.get("/pets", ensureAuthenticated, listAllPetController.handle);
-router.delete("/pets", ensureAuthenticated, deletePetController.handle);
-router.put("/pets", ensureAuthenticated, updatePetController.handle);
+router.delete("/pets/del/:id", ensureAuthenticated, deletePetController.handle);
+router.put("/pets/edit/:id", ensureAuthenticated, updatePetController.handle);
 
 // Specie
 router.post("/species", ensureAuthenticated, createSpecieController.handle);
 router.get("/species", ensureAuthenticated, listAllSpeciesController.handle);
-router.put("/species", ensureAuthenticated, updateSpecieController.handle);
-router.delete("/species", ensureAuthenticated, deleteSpecieController.handle);
+router.put("/species/edit/:id", ensureAuthenticated, updateSpecieController.handle);
+router.delete("/species/del/:id", ensureAuthenticated, deleteSpecieController.handle);
 
 // Meals
 router.post("/meals", ensureAuthenticated, createMealController.handle);
 router.get("/meals", ensureAuthenticated, listAllMealController.handle);
-router.put("/meals", ensureAuthenticated, updateMealController.handle);
-router.delete("/meals", ensureAuthenticated, deleteMealController.handle)
+router.put("/meals/edit/:id", ensureAuthenticated, updateMealController.handle);
+router.delete("/meals/del/:id", ensureAuthenticated, deleteMealController.handle)
 
 export { router };

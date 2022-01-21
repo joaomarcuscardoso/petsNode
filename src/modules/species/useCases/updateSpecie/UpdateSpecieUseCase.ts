@@ -4,35 +4,19 @@ import { getCustomRepository } from "typeorm";
 import { SpeciesRepositories } from "modules/species/infra/repositories/SpeciesRepositories";
 
 class UpdateSpecieUseCase {
-  async execute({id, name, description, user_id}: ISpecieRequest): Promise<Specie> {
+  async execute({id, name, description, user_id}: ISpecieRequest): Promise<string> {
     const specieRepositories = getCustomRepository(SpeciesRepositories);
 
-    if(!id) {
-      throw new Error("specie's id is required!");
-    }
-  
-    const specie = await specieRepositories.findOne({id, user_id});
-
-    if(!specie) {
-      throw new Error("Species not found!");
+    if(!id || !name || !description || !user_id) {
+      throw new Error("All fields is required.");
     }
 
-    if(!name && !description) {
-      throw new Error("Name or Description is required!");      
-    }
-
-    if(name) {
-      specie.name = name;
-    }
+    const specieUpdated = await specieRepositories.createQueryBuilder()
+    .update({name, description})
+    .where({id, user_id})
+    .execute();
     
-    if(description) {
-
-      specie.description = description;
-    }
-
-    const specieUpdated = await specieRepositories.save(specie);
-    
-    return specieUpdated;
+    return "Species was been update";
   }
 }
 

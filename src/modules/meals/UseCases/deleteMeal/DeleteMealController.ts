@@ -3,8 +3,8 @@ import { DeleteMealUseCase } from "./DeleteMealUseCase";
 
 class DeleteMealController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body;
     const { user_id } = request;
+    const { id } = request.params;
 
     const deleteMealUseCase = new DeleteMealUseCase();
   

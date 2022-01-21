@@ -7,42 +7,30 @@ class UpdateMealUseCase {
     const mealsRepositories = getCustomRepository(MealsRepositories);
     const petsRepositories = getCustomRepository(PetsRepositories);
 
-    if(!id) {
-      throw new Error("Id is required!");
+    if(!id ||!description || !meal_time || !pet_id) {
+      throw new Error("All fields is required");
     }
 
-    const meal = await mealsRepositories.findOne({
-      id
-    });
+    const pet = await petsRepositories.findOne({id: pet_id});
 
-    if(meal) {
 
-      const pet = await petsRepositories.findOne({id: meal.pet_id});
-      if(pet) {
-  
-        if(pet.user_id != user_id) {
-          throw new Error("Unauthorized");
-        }
+    if(pet) {
+
+      if(pet.user_id != user_id) {
+        throw new Error("Unauthorized");
       }
-    }
 
-    if(description) {
+      await mealsRepositories
+      .createQueryBuilder()
+      .update({description, meal_time, pet_id})
+      .where({id})
+      .execute();
 
-      meal.description = description;
-    }
+    } 
 
-    if(meal_time) {
-      meal.meal_time = meal_time;
-    }
-
-    if(pet_id) {
-      meal.pet_id = pet_id;
-    }
-
-    const mealUpdate = await mealsRepositories.save(meal);
-
-    return mealUpdate;
+    return "Meal was been update";
   }
+
 }
 
 export { UpdateMealUseCase };

@@ -10,13 +10,10 @@ class DeleteSpecieUseCase {
       throw new Error("Specie's id is required!")
     }
 
-    const specie = await speciesRepositories.findOne({id, user_id});
-
-    if(!specie) {
-      throw new Error("Specie's not found");
-    }
-
-    await speciesRepositories.remove(specie);
+    await speciesRepositories.createQueryBuilder()
+    .delete()
+    .where({user_id, id})
+    .execute();
 
     return "The Species was been deleted";
     

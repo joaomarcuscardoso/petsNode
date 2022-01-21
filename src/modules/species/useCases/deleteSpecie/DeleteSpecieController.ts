@@ -3,7 +3,7 @@ import { DeleteSpecieUseCase } from "./DeleteSpecieUseCase";
 
 class DeleteSpecieController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id } = request.body;
+    const { id } = request.params;
     const { user_id } = request;
 
     const deleteSpecieUseCase = new DeleteSpecieUseCase();

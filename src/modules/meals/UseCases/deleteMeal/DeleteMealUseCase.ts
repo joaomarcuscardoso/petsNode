@@ -11,9 +11,8 @@ class DeleteMealUseCase {
     const meal = await mealsRepositories.findOne({id});
 
     if(meal) {
-      console.log("entrou no meal");
+
       const pet = await petsRepositories.findOne({id: meal.pet_id});
-      console.log(pet);
 
       if(pet) {
         if(pet.user_id != user_id) {

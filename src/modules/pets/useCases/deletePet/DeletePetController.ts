@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 class DeletePetController {
   async handle(request: Request, response: Response): Promise<Response> {
 
-    const { id } = request.body;
+    const { id } = request.params;
     const { user_id } = request;
 
     const deletePetUseCase = new DeletePetUseCase();

@@ -8,10 +8,9 @@ import { MealsRepositories } from 'modules/meals/infra/repositories/MealsReposit
 class CreatePetUseCase {
   async execute({name, restrictions, number_meals, species_id, user_id }: IPetRequest): Promise<Pet> {
     const petRepositories = getCustomRepository(PetsRepositories);
-    const mealsRepositories = getCustomRepository(MealsRepositories);
     const speciesRepositories = getCustomRepository(SpeciesRepositories);
     
-    const specieExist = await speciesRepositories.find({id: species_id});
+    const specieExist = await speciesRepositories.findOne({id: species_id});
 
 
     if( !specieExist) {
