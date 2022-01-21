@@ -6,21 +6,16 @@ import { SpeciesRepositories } from 'modules/species/infra/repositories/SpeciesR
 import { MealsRepositories } from 'modules/meals/infra/repositories/MealsRepositories';
 
 class CreatePetUseCase {
-  async execute({name, restrictions, meals_id, number_meals, species_id, user_id }: IPetRequest): Promise<Pet> {
+  async execute({name, restrictions, number_meals, species_id, user_id }: IPetRequest): Promise<Pet> {
     const petRepositories = getCustomRepository(PetsRepositories);
     const mealsRepositories = getCustomRepository(MealsRepositories);
     const speciesRepositories = getCustomRepository(SpeciesRepositories);
     
     const specieExist = await speciesRepositories.find({id: species_id});
-    const mealExist = await mealsRepositories.find({id: meals_id});
 
 
     if( !specieExist) {
       throw new Error("Specie not found!");
-    }
-
-    if( !mealExist) {
-      throw new Error("Meal not found!");
     }
 
 
@@ -30,8 +25,7 @@ class CreatePetUseCase {
 
     const pet = petRepositories.create({
       name, 
-      restrictions,
-      meals_id, 
+      restrictions, 
       number_meals, 
       species_id,
       user_id
